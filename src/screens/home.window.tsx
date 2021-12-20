@@ -5,8 +5,10 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { MapView } from '../components/mapView';
 import { MaterialCommunityIcons as Icons } from '@expo/vector-icons';
 import { FilledButton } from '../components/button';
+import Colors from '../constants/Colors';
 
 const HomeWindow = ({ navigation }: any) => {
+
     const [gameState, setGameState] = useState([
         [0, 0, 0],
         [0, 0, 0],
@@ -14,10 +16,6 @@ const HomeWindow = ({ navigation }: any) => {
     ])
     const [currentPlayer, setCurrentPlayer] = useState(1)
     var Arr: any[] = [];
-    useEffect(() => {
-        startGame();
-    }, [])
-
     const startGame = () => {
         setGameState(
             [
@@ -27,7 +25,11 @@ const HomeWindow = ({ navigation }: any) => {
             ]
         )
     }
-    const search = 0;
+    
+    useEffect(() => {
+        startGame();
+    }, [])
+
 
     //Helper Method to check if map full and no winner
     function exists(arr: any, search: any) {
@@ -70,6 +72,8 @@ const HomeWindow = ({ navigation }: any) => {
         return 0;
 
     }
+
+
     const onTilePress = (row: number, col: number) => {
         //Prevent change of tiles
         var value = gameState[row][col]
@@ -125,10 +129,11 @@ const HomeWindow = ({ navigation }: any) => {
             <Appbar title='Tick Tack Toe Game' />
 
             <View style={backGround}>
-                <MapView PutIcon={PutIcon} onTilePress={onTilePress} />
 
+                <MapView PutIcon={PutIcon} onTilePress={onTilePress} />
                 <View style={{ paddingTop: 50 }} />
                 <FilledButton title="Start New Game" onPress={() => startGame()} />
+
             </View>
 
         </View>
@@ -138,19 +143,19 @@ const HomeWindow = ({ navigation }: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#ffff",
+        backgroundColor: Colors.dark.background,
 
     },
     boxView: {
         height: wp(80),
         width: wp(80),
         borderWidth: 5,
-        borderColor: "#ffffff",
+        borderColor: Colors.dark.whiteColor,
         borderStyle: 'dashed'
     },
     backGround: {
         flex: 1,
-        backgroundColor: "#ffff",
+        backgroundColor: Colors.dark.background,
         justifyContent: 'center',
         alignItems: "center",
     },
