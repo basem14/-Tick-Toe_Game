@@ -1,30 +1,55 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Text, View, StyleSheet, Button, TouchableOpacity, I18nManager, Alert } from 'react-native';
-import { Appbar } from '.';
+import React from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
-import { MaterialCommunityIcons as Icons } from '@expo/vector-icons';
-const MapView = ({ navigation }: any) => {
-    const { tiles, crossView, circleView} = styles;
+
+const MapView = ({ PutIcon, onTilePress }: any) => {
+    const { tiles } = styles;
     return (
         <>
             <View style={{ flexDirection: "row" }}>
-                <View style={[tiles, { borderTopWidth: 0, borderLeftWidth: 0 }]} >
-                    <Icons name="close" style={crossView}/>
-                </View>
-                <View style={[tiles, { borderTopWidth: 0 }]} >
-                <Icons name="circle-outline" style={circleView}/>
-                    </View>
-                <View style={[tiles, { borderTopWidth: 0, borderRightWidth: 0 }]} />
+
+                <TouchableOpacity onPress={() => { onTilePress(0, 0) }} style={[tiles, { borderTopWidth: 0, borderLeftWidth: 0 }]} >
+                    {PutIcon(0, 0)}
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => { onTilePress(0, 1) }} style={[tiles, { borderTopWidth: 0 }]} >
+                    {PutIcon(0, 1)}
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => { onTilePress(0, 2) }} style={[tiles, { borderTopWidth: 0, borderRightWidth: 0 }]} >
+                    {PutIcon(0, 2)}
+                </TouchableOpacity>
+
             </View>
             <View style={{ flexDirection: "row" }}>
-                <View style={[tiles, { borderLeftWidth: 0 }]} />
-                <View style={tiles} />
-                <View style={[tiles, { borderRightWidth: 0 }]} />
+
+                <TouchableOpacity onPress={() => { onTilePress(1, 0) }} style={[tiles, { borderLeftWidth: 0 }]} >
+                    {PutIcon(1, 0)}
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => { onTilePress(1, 1) }} style={tiles} >
+                    {PutIcon(1, 1)}
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => { onTilePress(1, 2) }} style={[tiles, { borderRightWidth: 0 }]} >
+                    {PutIcon(1, 2)}
+                </TouchableOpacity>
+
             </View>
             <View style={{ flexDirection: "row" }}>
-                <View style={[tiles, { borderLeftWidth: 0, borderBottomWidth: 0 }]} />
-                <View style={[tiles, { borderBottomWidth: 0 }]} />
-                <View style={[tiles, { borderBottomWidth: 0, borderRightWidth: 0 }]} />
+
+                <TouchableOpacity onPress={() => { onTilePress(2, 0) }} style={[tiles, { borderLeftWidth: 0, borderBottomWidth: 0 }]} >
+                    {PutIcon(2, 0)}
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => { onTilePress(2, 1) }} style={[tiles, { borderBottomWidth: 0 }]} >
+                    {PutIcon(2, 1)}
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => { onTilePress(2, 2) }} style={[tiles, { borderBottomWidth: 0, borderRightWidth: 0 }]} >
+                    {PutIcon(2, 2)}
+                </TouchableOpacity>
+
             </View>
         </>
     );
@@ -37,14 +62,6 @@ const styles = StyleSheet.create({
         height: 100,
         alignItems: "center",
         justifyContent: "center"
-    },
-    crossView: {
-        color: "red",
-        fontSize: 60
-    },
-    circleView: {
-        color: "green",
-        fontSize: 60
     }
 });
 

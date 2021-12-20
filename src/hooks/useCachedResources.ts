@@ -13,7 +13,8 @@ export default function useCachedResources() {
           SplashScreen.preventAutoHideAsync();
 
           await Font.loadAsync({
-            ...Ionicons.font  
+            ...Ionicons.font,
+            'bold': require('../../assets/fonts/URW-DIN-Arabic-Black.ttf'),  
           });
   
         } catch (e) {
